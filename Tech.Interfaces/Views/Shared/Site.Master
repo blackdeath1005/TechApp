@@ -1,0 +1,269 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html>
+<html lang="en">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="/Scripts/moment.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0lZq7YT2vkbV1rIyCpHdnjKVM1vIyE3Y&sensor=false&v=3"></script>
+        <link href="/Content/PagedList.css" rel="stylesheet" />
+        <%: Styles.Render("~/Content/css") %>
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+        
+    </head>
+    <body>
+    <div id="o-wrapper" class="o-wrapper">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img style="max-width:260px; margin-top: 8px;" src="/Images/Logo.png">
+            </div>
+            <!-- Collection of nav links and other content for toggling -->
+            <div id="navbarCollapse" class="collapse navbar-collapse bs-navbar-collapse">
+                <% if (Request.IsAuthenticated) { %>
+                    <ul class="nav navbar-nav">
+                        <li id="c-button--slide-left"><a href="#"><span class="glyphicon glyphicon-align-left"></span> Menu</a></li>
+                    </ul>
+                <% } %>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (Request.IsAuthenticated) { %>
+                        <li id="button-alert">
+                        </li>
+                        <li class="dropdown">
+	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> <%: Page.User.Identity.Name %> <b class="caret"></b>
+	                    </a>
+	                    <ul class="dropdown-menu">
+	                        <li><a href="#">Ver Perfil</a></li>
+	                        <li><a href="#">Cambiar Contraseña</a></li>
+                            <li class="divider"></li>
+	                        <li><a href="#" data-toggle="modal" data-backdrop="static" data-target="#LogOutModal">Cerrar Sesión</a></li>
+                        </ul>
+                    <% } else { %>
+                        <li>
+                        <a href="<%:Url.Action("LogIn", "Usuario")%>"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a>
+                    <% } %>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <% if (Request.IsAuthenticated) { %>
+        <!-- Modal -->
+        <div class="modal fade" id="LogOutModal" tabindex="-1" role="dialog" aria-labelledby="LogOutModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="LogOutModalLabel">¿Desea cerrar sesión?</h4>
+              </div>
+              <div class="modal-footer">
+                  <a href="<%:Url.Action("LogOff", "Usuario")%>" class="btn btn-primary btn-sm">Aceptar</a>
+                  <a class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Modal -->
+        <% } %>
+
+        <header>
+            <div class="page-header">
+            </div>
+        </header>
+
+        <div id="body" class="body-margin">
+            <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </section>
+        </div>
+
+        <div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+
+        <footer>
+            <nav role="navigation" class="navbar navbar-inverse">
+                <p class="navbar-text pull-left">
+                    Unlimited-Systems SAC <br />
+                    Copyright &copy; <%: DateTime.Now.Year %>. All Right Reserved.
+                </p>
+                <p class="navbar-text pull-right">
+                    Lunes a Viernes: 9:00am a 1:00pm / 2:00pm a 6:00pm <br />
+                    Teléfono: 717-4850 / E-mail: helpdesk@unlimited-systems.com
+                </p>
+            </nav>
+        </footer>
+
+    </div>
+
+        <!--
+            <li>Categories
+                <ul>
+                    <li>Sub Categories
+                        <ul>
+                            <li><a href="accordion-menu">Home</a></li>
+                            <li><a href="?0">Web Menus</a></li>
+                            <li><a href="?1">Sliding Menus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?2">Product 2</a></li>
+                </ul>
+            </li>
+            -->
+
+
+    <% if (Request.IsAuthenticated) { %>
+    <!-- SIDEBAR MENU -->
+    <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
+      <button class="c-menu__close"><span class="glyphicon glyphicon-chevron-right"></span> Close Menu</button>
+        <div id="acdnmenu">
+        <ul>
+            <li>Home
+                <ul>
+                    <li><a href="<%:Url.Action("Index", "Home")%>">Principal</a></li>
+                </ul>
+            </li>
+            <li>Solicitud Servicio
+                <ul>
+                    <li><a href="<%:Url.Action("Search", "SolicitudAtencion")%>">Consultar Solicitud</a></li>
+                    <li><a href="<%:Url.Action("Create", "SolicitudAtencion")%>">Crear Solicitud</a></li>
+                </ul>
+            </li>
+            <li>Caso Servicio
+                <ul>
+                    <li><a href="#">Consultar Casos Servicio</a></li>
+                    <li><a href="<%:Url.Action("SearchSolicitud", "CasoServicio")%>">Crear Caso Servicio</a></li>
+                </ul>
+            </li>
+            <li>Planificacion de Casos
+                <ul>
+                    <li><a href="<%:Url.Action("IndexGPSTecnico", "CasoServicio")%>">GPS Tecnico</a></li>
+                    <li><a href="<%:Url.Action("SearchCaso", "CasoServicio")%>">Asignar Tecnico</a></li>
+                </ul>
+            </li>
+            <li>Monitoreo de Equipos
+                <ul>
+                    <li><a href="<%:Url.Action("Index", "ErrorLog")%>">Monitoreo Errores</a></li>
+                    <li><a href="#">Monitoreo Imagenes</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+    </nav>
+    <!-- END SIDEBAR MENU -->
+    <% } %>
+
+    <div id="c-mask" class="c-mask"></div> <!-- MASCARA NEGRA -->
+
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <%: Scripts.Render("~/bundles/jqueryval") %>
+        <%: Scripts.Render("~/bundles/sidebarMenu") %>
+        <%: Scripts.Render("~/bundles/accordionMenu") %>
+        <%: Scripts.Render("~/bundles/datepicker") %>
+        <%: Styles.Render("~/Content/datepicker") %>
+        <%: Scripts.Render("~/bundles/datetimepicker") %>
+        <%: Styles.Render("~/Content/datetimepicker") %>
+        <%: Styles.Render("~/Content/dhtmlxcalendar") %>
+        <%: Scripts.Render("~/bundles/dhtmlxcalendar") %>
+
+      <script type="text/javascript">
+          var slideLeft = new Menu({
+              wrapper: '#o-wrapper',
+              type: 'slide-left',
+              menuOpenerClass: '.c-button',
+              maskId: '#c-mask'
+          });
+
+          var slideLeftBtn = document.querySelector('#c-button--slide-left');
+          var mask = document.querySelector('#c-mask');
+
+          slideLeftBtn.addEventListener('click', function (e) {
+              e.preventDefault;
+              if (mask.classList.contains('is-active')) {
+                  slideLeft.close();
+              }
+              else {
+                  slideLeft.open();
+              }
+          });
+      </script>
+      <script type="text/javascript">
+        function verificarFolder() {
+            $.ajax({
+                url: '<%:Url.Action("SearchFolder", "ErrorLog")%>',
+                type: 'POST',
+                dataType: 'json',
+                success: function (result) {
+                    if (result.contador != 0) {
+                        document.getElementById('button-alert').innerHTML =
+    '<a href="<%:Url.Action("Index", "ErrorLog")%>"><span class="text-primary text-uppercase"><strong>Alerta Error </strong></span><span class="badge progress-bar-danger">' + result.contador + '</span></a>';
+                    }
+                    else {
+                        var msj = readCookie('monitoreo');
+                        if (msj != null)
+                            document.getElementById('button-alert').innerHTML = msj;
+                        else
+                            document.getElementById('button-alert').innerHTML = '';
+                    }
+                },
+                error: function (error) {
+                    
+                }
+            });
+        }
+      </script>
+      <script type="text/javascript">
+        var timer = null;
+        var msjTimer = readCookie('timer');
+        if (msjTimer != null) {
+            timer = setInterval(verificarFolder, 1000);
+        }
+
+        function endTimer() {
+            clearInterval(timer);
+        }
+
+        var msjMonitor = readCookie('monitoreo');
+        if (msjMonitor != null)
+            document.getElementById('button-alert').innerHTML = msjMonitor;
+
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function eraseCookie(name) {
+            createCookie(name, "", -1);
+        }
+    </script>
+        <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+    </body>
+
+</html>

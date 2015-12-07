@@ -1,0 +1,1240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBUNLIMITEDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CASO_SERVICIO">
+          <Key>
+            <PropertyRef Name="Co_Caso" />
+          </Key>
+          <Property Name="Co_Caso" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Co_Solicitud" Type="int" />
+          <Property Name="Fe_Caso" Type="date" Nullable="false" />
+          <Property Name="Fl_Gasto" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Ss_Gasto" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Fl_Facturado" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Ss_Facturado" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Tx_Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tx_Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Fl_Informe" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Fe_RegistroIni" Type="datetime" Nullable="false" />
+          <Property Name="No_UsuarioIni" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fe_RegistroMod" Type="datetime" Nullable="false" />
+          <Property Name="No_UsuarioMod" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="Co_Cliente" />
+          </Key>
+          <Property Name="Co_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tx_RazonSocial" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nu_Ruc" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Tx_Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Co_Distrito" Type="int" Nullable="false" />
+          <Property Name="Nu_Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="No_NombreContacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tx_CargoContacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nu_Latitud" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nu_Longitud" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTRATO">
+          <Key>
+            <PropertyRef Name="Co_Contrato" />
+          </Key>
+          <Property Name="Co_Contrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Contrato" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tx_Tipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fe_Inicio" Type="date" Nullable="false" />
+          <Property Name="Fe_Final" Type="date" Nullable="false" />
+          <Property Name="Tx_Estado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTRATO_EQUIPO">
+          <Key>
+            <PropertyRef Name="Co_Contrato" />
+            <PropertyRef Name="Co_Equipo" />
+          </Key>
+          <Property Name="Co_Contrato" Type="int" Nullable="false" />
+          <Property Name="Co_Equipo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="Co_Departamento" />
+          </Key>
+          <Property Name="Co_Departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Departamento" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_CASO_SERVICIO">
+          <Key>
+            <PropertyRef Name="Co_Detalle_Caso" />
+          </Key>
+          <Property Name="Co_Detalle_Caso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Co_Caso" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Co_Equipo" Type="int" Nullable="false" />
+          <Property Name="Co_Tipo" Type="int" />
+          <Property Name="Fe_HoraInicial" Type="datetime" />
+          <Property Name="Fe_HoraFinal" Type="datetime" />
+          <Property Name="Co_Tecnico" Type="int" />
+          <Property Name="Tx_DetalleServicio" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Nu_Error" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fl_Reporte" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Fe_RegistroIni" Type="datetime" Nullable="false" />
+          <Property Name="No_UsuarioIni" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fe_RegistroMod" Type="datetime" Nullable="false" />
+          <Property Name="No_UsuarioMod" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_SOLICITUD_ATENCION">
+          <Key>
+            <PropertyRef Name="Co_Solicitud" />
+            <PropertyRef Name="Co_Equipo" />
+          </Key>
+          <Property Name="Co_Solicitud" Type="int" Nullable="false" />
+          <Property Name="Co_Equipo" Type="int" Nullable="false" />
+          <Property Name="Tx_Problema" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Nu_Error" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DISTRITO">
+          <Key>
+            <PropertyRef Name="Co_Distrito" />
+          </Key>
+          <Property Name="Co_Distrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Distrito" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Co_Provincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EQUIPO">
+          <Key>
+            <PropertyRef Name="Co_Equipo" />
+          </Key>
+          <Property Name="Co_Equipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tx_Modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Serie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Ubicacion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Co_Cliente" Type="int" Nullable="false" />
+          <Property Name="Tx_Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tx_Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Tx_Latitud" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Tx_Longitud" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GPS_TECNICO">
+          <Key>
+            <PropertyRef Name="Co_Gps" />
+          </Key>
+          <Property Name="Co_Gps" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Co_Tecnico" Type="int" Nullable="false" />
+          <Property Name="Fe_Gps" Type="datetime" Nullable="false" />
+          <Property Name="Tx_Latitud" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Tx_Longitud" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_ERROR">
+          <Key>
+            <PropertyRef Name="Co_LogError" />
+          </Key>
+          <Property Name="Co_LogError" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Co_Error" Type="int" Nullable="false" />
+          <Property Name="Co_Equipo" Type="int" Nullable="false" />
+          <Property Name="Fe_LogError" Type="datetime" Nullable="false" />
+          <Property Name="Tx_Detalle" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Tx_Voltaje" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tx_Alineacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tx_Visualizacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tx_VGA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tx_COM" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tx_Energia" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tx_Sistema" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Archivo" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="Co_Provincia" />
+          </Key>
+          <Property Name="Co_Provincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Provincia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Co_Departamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_ATENCION">
+          <Key>
+            <PropertyRef Name="Co_Solicitud" />
+          </Key>
+          <Property Name="Co_Solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fe_Solicitud" Type="date" Nullable="false" />
+          <Property Name="Tx_Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tx_Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_COTIZACION">
+          <Key>
+            <PropertyRef Name="Co_Solicitud" />
+          </Key>
+          <Property Name="Co_Solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fe_Solicitud" Type="date" Nullable="false" />
+          <Property Name="Tx_Detalle" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Co_SolicitudAtencion" Type="int" Nullable="false" />
+          <Property Name="No_UsuarioIni" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fe_RegistroMod" Type="date" Nullable="false" />
+          <Property Name="No_UsuarioMod" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TECNICO">
+          <Key>
+            <PropertyRef Name="Co_Tecnico" />
+          </Key>
+          <Property Name="Co_Tecnico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Tecnico" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Ape_Paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ape_Materno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_NomCompleto" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nu_Dni" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Tx_Telefono" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Tx_Celular" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Tx_Direccion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Co_Distrito" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPO_SERVICIO">
+          <Key>
+            <PropertyRef Name="Co_Tipo" />
+          </Key>
+          <Property Name="Co_Tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Co_Usuario" />
+          </Key>
+          <Property Name="Co_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tx_Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CASO_SERVICIO_SOLICITUD_ATENCION">
+          <End Role="SOLICITUD_ATENCION" Type="Self.SOLICITUD_ATENCION" Multiplicity="0..1" />
+          <End Role="CASO_SERVICIO" Type="Self.CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Principal>
+            <Dependent Role="CASO_SERVICIO">
+              <PropertyRef Name="Co_Solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_DISTRITO">
+          <End Role="DISTRITO" Type="Self.DISTRITO" Multiplicity="1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISTRITO">
+              <PropertyRef Name="Co_Distrito" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="Co_Distrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTRATO_EQUIPO_CONTRATO">
+          <End Role="CONTRATO" Type="Self.CONTRATO" Multiplicity="1" />
+          <End Role="CONTRATO_EQUIPO" Type="Self.CONTRATO_EQUIPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATO">
+              <PropertyRef Name="Co_Contrato" />
+            </Principal>
+            <Dependent Role="CONTRATO_EQUIPO">
+              <PropertyRef Name="Co_Contrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTRATO_EQUIPO_EQUIPO">
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="1" />
+          <End Role="CONTRATO_EQUIPO" Type="Self.CONTRATO_EQUIPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="CONTRATO_EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO">
+          <End Role="CASO_SERVICIO" Type="Self.CASO_SERVICIO" Multiplicity="1" />
+          <End Role="DETALLE_CASO_SERVICIO" Type="Self.DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CASO_SERVICIO">
+              <PropertyRef Name="Co_Caso" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_EQUIPO">
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="1" />
+          <End Role="DETALLE_CASO_SERVICIO" Type="Self.DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_TECNICO">
+          <End Role="TECNICO" Type="Self.TECNICO" Multiplicity="0..1" />
+          <End Role="DETALLE_CASO_SERVICIO" Type="Self.DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TECNICO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO">
+          <End Role="TIPO_SERVICIO" Type="Self.TIPO_SERVICIO" Multiplicity="0..1" />
+          <End Role="DETALLE_CASO_SERVICIO" Type="Self.DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_SERVICIO">
+              <PropertyRef Name="Co_Tipo" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_SOLICITUD_ATENCION_EQUIPO">
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="1" />
+          <End Role="DETALLE_SOLICITUD_ATENCION" Type="Self.DETALLE_SOLICITUD_ATENCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION">
+          <End Role="SOLICITUD_ATENCION" Type="Self.SOLICITUD_ATENCION" Multiplicity="1" />
+          <End Role="DETALLE_SOLICITUD_ATENCION" Type="Self.DETALLE_SOLICITUD_ATENCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISTRITO_PROVINCIA">
+          <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+          <End Role="DISTRITO" Type="Self.DISTRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIA">
+              <PropertyRef Name="Co_Provincia" />
+            </Principal>
+            <Dependent Role="DISTRITO">
+              <PropertyRef Name="Co_Provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPO_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="Co_Cliente" />
+            </Principal>
+            <Dependent Role="EQUIPO">
+              <PropertyRef Name="Co_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GPS_TECNICO_TECNICO">
+          <End Role="TECNICO" Type="Self.TECNICO" Multiplicity="1" />
+          <End Role="GPS_TECNICO" Type="Self.GPS_TECNICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TECNICO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Principal>
+            <Dependent Role="GPS_TECNICO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_ERROR_EQUIPO">
+          <End Role="EQUIPO" Type="Self.EQUIPO" Multiplicity="1" />
+          <End Role="LOG_ERROR" Type="Self.LOG_ERROR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="LOG_ERROR">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVINCIA_DEPARTAMENTO">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="Co_Departamento" />
+            </Principal>
+            <Dependent Role="PROVINCIA">
+              <PropertyRef Name="Co_Departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION">
+          <End Role="SOLICITUD_ATENCION" Type="Self.SOLICITUD_ATENCION" Multiplicity="1" />
+          <End Role="SOLICITUD_COTIZACION" Type="Self.SOLICITUD_COTIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Principal>
+            <Dependent Role="SOLICITUD_COTIZACION">
+              <PropertyRef Name="Co_SolicitudAtencion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TECNICO_DISTRITO">
+          <End Role="DISTRITO" Type="Self.DISTRITO" Multiplicity="1" />
+          <End Role="TECNICO" Type="Self.TECNICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISTRITO">
+              <PropertyRef Name="Co_Distrito" />
+            </Principal>
+            <Dependent Role="TECNICO">
+              <PropertyRef Name="Co_Distrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBUNLIMITEDModelStoreContainer">
+          <EntitySet Name="CASO_SERVICIO" EntityType="Self.CASO_SERVICIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTRATO" EntityType="Self.CONTRATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTRATO_EQUIPO" EntityType="Self.CONTRATO_EQUIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_CASO_SERVICIO" EntityType="Self.DETALLE_CASO_SERVICIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_SOLICITUD_ATENCION" EntityType="Self.DETALLE_SOLICITUD_ATENCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EQUIPO" EntityType="Self.EQUIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GPS_TECNICO" EntityType="Self.GPS_TECNICO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_ERROR" EntityType="Self.LOG_ERROR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOLICITUD_ATENCION" EntityType="Self.SOLICITUD_ATENCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOLICITUD_COTIZACION" EntityType="Self.SOLICITUD_COTIZACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TECNICO" EntityType="Self.TECNICO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CASO_SERVICIO_SOLICITUD_ATENCION" Association="Self.FK_CASO_SERVICIO_SOLICITUD_ATENCION">
+            <End Role="SOLICITUD_ATENCION" EntitySet="SOLICITUD_ATENCION" />
+            <End Role="CASO_SERVICIO" EntitySet="CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_DISTRITO" Association="Self.FK_CLIENTE_DISTRITO">
+            <End Role="DISTRITO" EntitySet="DISTRITO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTRATO_EQUIPO_CONTRATO" Association="Self.FK_CONTRATO_EQUIPO_CONTRATO">
+            <End Role="CONTRATO" EntitySet="CONTRATO" />
+            <End Role="CONTRATO_EQUIPO" EntitySet="CONTRATO_EQUIPO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTRATO_EQUIPO_EQUIPO" Association="Self.FK_CONTRATO_EQUIPO_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="CONTRATO_EQUIPO" EntitySet="CONTRATO_EQUIPO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO" Association="Self.FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO">
+            <End Role="CASO_SERVICIO" EntitySet="CASO_SERVICIO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_EQUIPO" Association="Self.FK_DETALLE_CASO_SERVICIO_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_TECNICO" Association="Self.FK_DETALLE_CASO_SERVICIO_TECNICO">
+            <End Role="TECNICO" EntitySet="TECNICO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO" Association="Self.FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO">
+            <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_SOLICITUD_ATENCION_EQUIPO" Association="Self.FK_DETALLE_SOLICITUD_ATENCION_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="DETALLE_SOLICITUD_ATENCION" EntitySet="DETALLE_SOLICITUD_ATENCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION" Association="Self.FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION">
+            <End Role="SOLICITUD_ATENCION" EntitySet="SOLICITUD_ATENCION" />
+            <End Role="DETALLE_SOLICITUD_ATENCION" EntitySet="DETALLE_SOLICITUD_ATENCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISTRITO_PROVINCIA" Association="Self.FK_DISTRITO_PROVINCIA">
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+            <End Role="DISTRITO" EntitySet="DISTRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPO_CLIENTE" Association="Self.FK_EQUIPO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GPS_TECNICO_TECNICO" Association="Self.FK_GPS_TECNICO_TECNICO">
+            <End Role="TECNICO" EntitySet="TECNICO" />
+            <End Role="GPS_TECNICO" EntitySet="GPS_TECNICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_ERROR_EQUIPO" Association="Self.FK_LOG_ERROR_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="LOG_ERROR" EntitySet="LOG_ERROR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVINCIA_DEPARTAMENTO" Association="Self.FK_PROVINCIA_DEPARTAMENTO">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION" Association="Self.FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION">
+            <End Role="SOLICITUD_ATENCION" EntitySet="SOLICITUD_ATENCION" />
+            <End Role="SOLICITUD_COTIZACION" EntitySet="SOLICITUD_COTIZACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TECNICO_DISTRITO" Association="Self.FK_TECNICO_DISTRITO">
+            <End Role="DISTRITO" EntitySet="DISTRITO" />
+            <End Role="TECNICO" EntitySet="TECNICO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBUNLIMITEDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBUNLIMITEDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CASO_SERVICIO" EntityType="DBUNLIMITEDModel.CASO_SERVICIO" />
+          <EntitySet Name="CLIENTE" EntityType="DBUNLIMITEDModel.CLIENTE" />
+          <EntitySet Name="CONTRATO" EntityType="DBUNLIMITEDModel.CONTRATO" />
+          <EntitySet Name="DEPARTAMENTO" EntityType="DBUNLIMITEDModel.DEPARTAMENTO" />
+          <EntitySet Name="DETALLE_CASO_SERVICIO" EntityType="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO" />
+          <EntitySet Name="DETALLE_SOLICITUD_ATENCION" EntityType="DBUNLIMITEDModel.DETALLE_SOLICITUD_ATENCION" />
+          <EntitySet Name="DISTRITO" EntityType="DBUNLIMITEDModel.DISTRITO" />
+          <EntitySet Name="EQUIPO" EntityType="DBUNLIMITEDModel.EQUIPO" />
+          <EntitySet Name="GPS_TECNICO" EntityType="DBUNLIMITEDModel.GPS_TECNICO" />
+          <EntitySet Name="LOG_ERROR" EntityType="DBUNLIMITEDModel.LOG_ERROR" />
+          <EntitySet Name="PROVINCIA" EntityType="DBUNLIMITEDModel.PROVINCIA" />
+          <EntitySet Name="SOLICITUD_ATENCION" EntityType="DBUNLIMITEDModel.SOLICITUD_ATENCION" />
+          <EntitySet Name="SOLICITUD_COTIZACION" EntityType="DBUNLIMITEDModel.SOLICITUD_COTIZACION" />
+          <EntitySet Name="TECNICO" EntityType="DBUNLIMITEDModel.TECNICO" />
+          <EntitySet Name="TIPO_SERVICIO" EntityType="DBUNLIMITEDModel.TIPO_SERVICIO" />
+          <EntitySet Name="USUARIO" EntityType="DBUNLIMITEDModel.USUARIO" />
+          <AssociationSet Name="FK_CASO_SERVICIO_SOLICITUD_ATENCION" Association="DBUNLIMITEDModel.FK_CASO_SERVICIO_SOLICITUD_ATENCION">
+            <End Role="SOLICITUD_ATENCION" EntitySet="SOLICITUD_ATENCION" />
+            <End Role="CASO_SERVICIO" EntitySet="CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO" Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO">
+            <End Role="CASO_SERVICIO" EntitySet="CASO_SERVICIO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_DISTRITO" Association="DBUNLIMITEDModel.FK_CLIENTE_DISTRITO">
+            <End Role="DISTRITO" EntitySet="DISTRITO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPO_CLIENTE" Association="DBUNLIMITEDModel.FK_EQUIPO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVINCIA_DEPARTAMENTO" Association="DBUNLIMITEDModel.FK_PROVINCIA_DEPARTAMENTO">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_EQUIPO" Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_TECNICO" Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TECNICO">
+            <End Role="TECNICO" EntitySet="TECNICO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO" Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO">
+            <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+            <End Role="DETALLE_CASO_SERVICIO" EntitySet="DETALLE_CASO_SERVICIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_SOLICITUD_ATENCION_EQUIPO" Association="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="DETALLE_SOLICITUD_ATENCION" EntitySet="DETALLE_SOLICITUD_ATENCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION" Association="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION">
+            <End Role="SOLICITUD_ATENCION" EntitySet="SOLICITUD_ATENCION" />
+            <End Role="DETALLE_SOLICITUD_ATENCION" EntitySet="DETALLE_SOLICITUD_ATENCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISTRITO_PROVINCIA" Association="DBUNLIMITEDModel.FK_DISTRITO_PROVINCIA">
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+            <End Role="DISTRITO" EntitySet="DISTRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TECNICO_DISTRITO" Association="DBUNLIMITEDModel.FK_TECNICO_DISTRITO">
+            <End Role="DISTRITO" EntitySet="DISTRITO" />
+            <End Role="TECNICO" EntitySet="TECNICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_ERROR_EQUIPO" Association="DBUNLIMITEDModel.FK_LOG_ERROR_EQUIPO">
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+            <End Role="LOG_ERROR" EntitySet="LOG_ERROR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GPS_TECNICO_TECNICO" Association="DBUNLIMITEDModel.FK_GPS_TECNICO_TECNICO">
+            <End Role="TECNICO" EntitySet="TECNICO" />
+            <End Role="GPS_TECNICO" EntitySet="GPS_TECNICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION" Association="DBUNLIMITEDModel.FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION">
+            <End Role="SOLICITUD_ATENCION" EntitySet="SOLICITUD_ATENCION" />
+            <End Role="SOLICITUD_COTIZACION" EntitySet="SOLICITUD_COTIZACION" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATO_EQUIPO" Association="DBUNLIMITEDModel.CONTRATO_EQUIPO">
+            <End Role="CONTRATO" EntitySet="CONTRATO" />
+            <End Role="EQUIPO" EntitySet="EQUIPO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CASO_SERVICIO">
+          <Key>
+            <PropertyRef Name="Co_Caso" />
+          </Key>
+          <Property Name="Co_Caso" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Solicitud" Type="Int32" />
+          <Property Name="Fe_Caso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fl_Gasto" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Ss_Gasto" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="Fl_Facturado" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Ss_Facturado" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="Tx_Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Fl_Informe" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Fe_RegistroIni" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="No_UsuarioIni" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fe_RegistroMod" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="No_UsuarioMod" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SOLICITUD_ATENCION" Relationship="DBUNLIMITEDModel.FK_CASO_SERVICIO_SOLICITUD_ATENCION" FromRole="CASO_SERVICIO" ToRole="SOLICITUD_ATENCION" />
+          <NavigationProperty Name="DETALLE_CASO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO" FromRole="CASO_SERVICIO" ToRole="DETALLE_CASO_SERVICIO" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="Co_Cliente" />
+          </Key>
+          <Property Name="Co_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tx_RazonSocial" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nu_Ruc" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Distrito" Type="Int32" Nullable="false" />
+          <Property Name="Nu_Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="No_NombreContacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_CargoContacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nu_Latitud" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Nu_Longitud" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DISTRITO" Relationship="DBUNLIMITEDModel.FK_CLIENTE_DISTRITO" FromRole="CLIENTE" ToRole="DISTRITO" />
+          <NavigationProperty Name="EQUIPO" Relationship="DBUNLIMITEDModel.FK_EQUIPO_CLIENTE" FromRole="CLIENTE" ToRole="EQUIPO" />
+        </EntityType>
+        <EntityType Name="CONTRATO">
+          <Key>
+            <PropertyRef Name="Co_Contrato" />
+          </Key>
+          <Property Name="Co_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Contrato" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fe_Inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fe_Final" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tx_Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EQUIPO" Relationship="DBUNLIMITEDModel.CONTRATO_EQUIPO" FromRole="CONTRATO" ToRole="EQUIPO" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="Co_Departamento" />
+          </Key>
+          <Property Name="Co_Departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Departamento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROVINCIA" Relationship="DBUNLIMITEDModel.FK_PROVINCIA_DEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="PROVINCIA" />
+        </EntityType>
+        <EntityType Name="DETALLE_CASO_SERVICIO">
+          <Key>
+            <PropertyRef Name="Co_Detalle_Caso" />
+          </Key>
+          <Property Name="Co_Detalle_Caso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Co_Caso" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Equipo" Type="Int32" Nullable="false" />
+          <Property Name="Co_Tipo" Type="Int32" />
+          <Property Name="Fe_HoraInicial" Type="DateTime" Precision="3" />
+          <Property Name="Fe_HoraFinal" Type="DateTime" Precision="3" />
+          <Property Name="Co_Tecnico" Type="Int32" />
+          <Property Name="Tx_DetalleServicio" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Nu_Error" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fl_Reporte" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Fe_RegistroIni" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="No_UsuarioIni" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fe_RegistroMod" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="No_UsuarioMod" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CASO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO" FromRole="DETALLE_CASO_SERVICIO" ToRole="CASO_SERVICIO" />
+          <NavigationProperty Name="EQUIPO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_EQUIPO" FromRole="DETALLE_CASO_SERVICIO" ToRole="EQUIPO" />
+          <NavigationProperty Name="TECNICO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TECNICO" FromRole="DETALLE_CASO_SERVICIO" ToRole="TECNICO" />
+          <NavigationProperty Name="TIPO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO" FromRole="DETALLE_CASO_SERVICIO" ToRole="TIPO_SERVICIO" />
+        </EntityType>
+        <EntityType Name="DETALLE_SOLICITUD_ATENCION">
+          <Key>
+            <PropertyRef Name="Co_Solicitud" />
+            <PropertyRef Name="Co_Equipo" />
+          </Key>
+          <Property Name="Co_Solicitud" Type="Int32" Nullable="false" />
+          <Property Name="Co_Equipo" Type="Int32" Nullable="false" />
+          <Property Name="Tx_Problema" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Nu_Error" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EQUIPO" Relationship="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_EQUIPO" FromRole="DETALLE_SOLICITUD_ATENCION" ToRole="EQUIPO" />
+          <NavigationProperty Name="SOLICITUD_ATENCION" Relationship="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION" FromRole="DETALLE_SOLICITUD_ATENCION" ToRole="SOLICITUD_ATENCION" />
+        </EntityType>
+        <EntityType Name="DISTRITO">
+          <Key>
+            <PropertyRef Name="Co_Distrito" />
+          </Key>
+          <Property Name="Co_Distrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Distrito" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Provincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="DBUNLIMITEDModel.FK_CLIENTE_DISTRITO" FromRole="DISTRITO" ToRole="CLIENTE" />
+          <NavigationProperty Name="PROVINCIA" Relationship="DBUNLIMITEDModel.FK_DISTRITO_PROVINCIA" FromRole="DISTRITO" ToRole="PROVINCIA" />
+          <NavigationProperty Name="TECNICO" Relationship="DBUNLIMITEDModel.FK_TECNICO_DISTRITO" FromRole="DISTRITO" ToRole="TECNICO" />
+        </EntityType>
+        <EntityType Name="EQUIPO">
+          <Key>
+            <PropertyRef Name="Co_Equipo" />
+          </Key>
+          <Property Name="Co_Equipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tx_Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Serie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Ubicacion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Tx_Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Latitud" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Longitud" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="DBUNLIMITEDModel.FK_EQUIPO_CLIENTE" FromRole="EQUIPO" ToRole="CLIENTE" />
+          <NavigationProperty Name="DETALLE_CASO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_EQUIPO" FromRole="EQUIPO" ToRole="DETALLE_CASO_SERVICIO" />
+          <NavigationProperty Name="DETALLE_SOLICITUD_ATENCION" Relationship="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_EQUIPO" FromRole="EQUIPO" ToRole="DETALLE_SOLICITUD_ATENCION" />
+          <NavigationProperty Name="LOG_ERROR" Relationship="DBUNLIMITEDModel.FK_LOG_ERROR_EQUIPO" FromRole="EQUIPO" ToRole="LOG_ERROR" />
+          <NavigationProperty Name="CONTRATO" Relationship="DBUNLIMITEDModel.CONTRATO_EQUIPO" FromRole="EQUIPO" ToRole="CONTRATO" />
+        </EntityType>
+        <EntityType Name="GPS_TECNICO">
+          <Key>
+            <PropertyRef Name="Co_Gps" />
+          </Key>
+          <Property Name="Co_Gps" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Co_Tecnico" Type="Int32" Nullable="false" />
+          <Property Name="Fe_Gps" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Tx_Latitud" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Longitud" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TECNICO" Relationship="DBUNLIMITEDModel.FK_GPS_TECNICO_TECNICO" FromRole="GPS_TECNICO" ToRole="TECNICO" />
+        </EntityType>
+        <EntityType Name="LOG_ERROR">
+          <Key>
+            <PropertyRef Name="Co_LogError" />
+          </Key>
+          <Property Name="Co_LogError" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Co_Error" Type="Int32" Nullable="false" />
+          <Property Name="Co_Equipo" Type="Int32" Nullable="false" />
+          <Property Name="Fe_LogError" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Tx_Detalle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Voltaje" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Alineacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Visualizacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_VGA" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_COM" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Energia" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Sistema" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Archivo" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EQUIPO" Relationship="DBUNLIMITEDModel.FK_LOG_ERROR_EQUIPO" FromRole="LOG_ERROR" ToRole="EQUIPO" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="Co_Provincia" />
+          </Key>
+          <Property Name="Co_Provincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Provincia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Departamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="DBUNLIMITEDModel.FK_PROVINCIA_DEPARTAMENTO" FromRole="PROVINCIA" ToRole="DEPARTAMENTO" />
+          <NavigationProperty Name="DISTRITO" Relationship="DBUNLIMITEDModel.FK_DISTRITO_PROVINCIA" FromRole="PROVINCIA" ToRole="DISTRITO" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_ATENCION">
+          <Key>
+            <PropertyRef Name="Co_Solicitud" />
+          </Key>
+          <Property Name="Co_Solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fe_Solicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tx_Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CASO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_CASO_SERVICIO_SOLICITUD_ATENCION" FromRole="SOLICITUD_ATENCION" ToRole="CASO_SERVICIO" />
+          <NavigationProperty Name="DETALLE_SOLICITUD_ATENCION" Relationship="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION" FromRole="SOLICITUD_ATENCION" ToRole="DETALLE_SOLICITUD_ATENCION" />
+          <NavigationProperty Name="SOLICITUD_COTIZACION" Relationship="DBUNLIMITEDModel.FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION" FromRole="SOLICITUD_ATENCION" ToRole="SOLICITUD_COTIZACION" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_COTIZACION">
+          <Key>
+            <PropertyRef Name="Co_Solicitud" />
+          </Key>
+          <Property Name="Co_Solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fe_Solicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tx_Detalle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Co_SolicitudAtencion" Type="Int32" Nullable="false" />
+          <Property Name="No_UsuarioIni" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fe_RegistroMod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="No_UsuarioMod" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SOLICITUD_ATENCION" Relationship="DBUNLIMITEDModel.FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION" FromRole="SOLICITUD_COTIZACION" ToRole="SOLICITUD_ATENCION" />
+        </EntityType>
+        <EntityType Name="TECNICO">
+          <Key>
+            <PropertyRef Name="Co_Tecnico" />
+          </Key>
+          <Property Name="Co_Tecnico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Tecnico" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Ape_Paterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ape_Materno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_NomCompleto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nu_Dni" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Telefono" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Celular" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Distrito" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DETALLE_CASO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TECNICO" FromRole="TECNICO" ToRole="DETALLE_CASO_SERVICIO" />
+          <NavigationProperty Name="DISTRITO" Relationship="DBUNLIMITEDModel.FK_TECNICO_DISTRITO" FromRole="TECNICO" ToRole="DISTRITO" />
+          <NavigationProperty Name="GPS_TECNICO" Relationship="DBUNLIMITEDModel.FK_GPS_TECNICO_TECNICO" FromRole="TECNICO" ToRole="GPS_TECNICO" />
+        </EntityType>
+        <EntityType Name="TIPO_SERVICIO">
+          <Key>
+            <PropertyRef Name="Co_Tipo" />
+          </Key>
+          <Property Name="Co_Tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DETALLE_CASO_SERVICIO" Relationship="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO" FromRole="TIPO_SERVICIO" ToRole="DETALLE_CASO_SERVICIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Co_Usuario" />
+          </Key>
+          <Property Name="Co_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tx_Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CASO_SERVICIO_SOLICITUD_ATENCION">
+          <End Type="DBUNLIMITEDModel.SOLICITUD_ATENCION" Role="SOLICITUD_ATENCION" Multiplicity="0..1" />
+          <End Type="DBUNLIMITEDModel.CASO_SERVICIO" Role="CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Principal>
+            <Dependent Role="CASO_SERVICIO">
+              <PropertyRef Name="Co_Solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO">
+          <End Type="DBUNLIMITEDModel.CASO_SERVICIO" Role="CASO_SERVICIO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO" Role="DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CASO_SERVICIO">
+              <PropertyRef Name="Co_Caso" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_DISTRITO">
+          <End Type="DBUNLIMITEDModel.DISTRITO" Role="DISTRITO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.CLIENTE" Role="CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISTRITO">
+              <PropertyRef Name="Co_Distrito" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="Co_Distrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPO_CLIENTE">
+          <End Type="DBUNLIMITEDModel.CLIENTE" Role="CLIENTE" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.EQUIPO" Role="EQUIPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="Co_Cliente" />
+            </Principal>
+            <Dependent Role="EQUIPO">
+              <PropertyRef Name="Co_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVINCIA_DEPARTAMENTO">
+          <End Type="DBUNLIMITEDModel.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.PROVINCIA" Role="PROVINCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="Co_Departamento" />
+            </Principal>
+            <Dependent Role="PROVINCIA">
+              <PropertyRef Name="Co_Departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_EQUIPO">
+          <End Type="DBUNLIMITEDModel.EQUIPO" Role="EQUIPO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO" Role="DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_TECNICO">
+          <End Type="DBUNLIMITEDModel.TECNICO" Role="TECNICO" Multiplicity="0..1" />
+          <End Type="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO" Role="DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TECNICO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO">
+          <End Type="DBUNLIMITEDModel.TIPO_SERVICIO" Role="TIPO_SERVICIO" Multiplicity="0..1" />
+          <End Type="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO" Role="DETALLE_CASO_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_SERVICIO">
+              <PropertyRef Name="Co_Tipo" />
+            </Principal>
+            <Dependent Role="DETALLE_CASO_SERVICIO">
+              <PropertyRef Name="Co_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_SOLICITUD_ATENCION_EQUIPO">
+          <End Type="DBUNLIMITEDModel.EQUIPO" Role="EQUIPO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.DETALLE_SOLICITUD_ATENCION" Role="DETALLE_SOLICITUD_ATENCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION">
+          <End Type="DBUNLIMITEDModel.SOLICITUD_ATENCION" Role="SOLICITUD_ATENCION" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.DETALLE_SOLICITUD_ATENCION" Role="DETALLE_SOLICITUD_ATENCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISTRITO_PROVINCIA">
+          <End Type="DBUNLIMITEDModel.PROVINCIA" Role="PROVINCIA" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.DISTRITO" Role="DISTRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIA">
+              <PropertyRef Name="Co_Provincia" />
+            </Principal>
+            <Dependent Role="DISTRITO">
+              <PropertyRef Name="Co_Provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TECNICO_DISTRITO">
+          <End Type="DBUNLIMITEDModel.DISTRITO" Role="DISTRITO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.TECNICO" Role="TECNICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISTRITO">
+              <PropertyRef Name="Co_Distrito" />
+            </Principal>
+            <Dependent Role="TECNICO">
+              <PropertyRef Name="Co_Distrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_ERROR_EQUIPO">
+          <End Type="DBUNLIMITEDModel.EQUIPO" Role="EQUIPO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.LOG_ERROR" Role="LOG_ERROR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO">
+              <PropertyRef Name="Co_Equipo" />
+            </Principal>
+            <Dependent Role="LOG_ERROR">
+              <PropertyRef Name="Co_Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GPS_TECNICO_TECNICO">
+          <End Type="DBUNLIMITEDModel.TECNICO" Role="TECNICO" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.GPS_TECNICO" Role="GPS_TECNICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TECNICO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Principal>
+            <Dependent Role="GPS_TECNICO">
+              <PropertyRef Name="Co_Tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION">
+          <End Type="DBUNLIMITEDModel.SOLICITUD_ATENCION" Role="SOLICITUD_ATENCION" Multiplicity="1" />
+          <End Type="DBUNLIMITEDModel.SOLICITUD_COTIZACION" Role="SOLICITUD_COTIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_ATENCION">
+              <PropertyRef Name="Co_Solicitud" />
+            </Principal>
+            <Dependent Role="SOLICITUD_COTIZACION">
+              <PropertyRef Name="Co_SolicitudAtencion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATO_EQUIPO">
+          <End Type="DBUNLIMITEDModel.CONTRATO" Role="CONTRATO" Multiplicity="*" />
+          <End Type="DBUNLIMITEDModel.EQUIPO" Role="EQUIPO" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBUNLIMITEDModelStoreContainer" CdmEntityContainer="DBUNLIMITEDEntities">
+          <EntitySetMapping Name="CASO_SERVICIO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.CASO_SERVICIO">
+              <MappingFragment StoreEntitySet="CASO_SERVICIO">
+                <ScalarProperty Name="No_UsuarioMod" ColumnName="No_UsuarioMod" />
+                <ScalarProperty Name="Fe_RegistroMod" ColumnName="Fe_RegistroMod" />
+                <ScalarProperty Name="No_UsuarioIni" ColumnName="No_UsuarioIni" />
+                <ScalarProperty Name="Fe_RegistroIni" ColumnName="Fe_RegistroIni" />
+                <ScalarProperty Name="Fl_Informe" ColumnName="Fl_Informe" />
+                <ScalarProperty Name="Tx_Observaciones" ColumnName="Tx_Observaciones" />
+                <ScalarProperty Name="Tx_Estado" ColumnName="Tx_Estado" />
+                <ScalarProperty Name="Ss_Facturado" ColumnName="Ss_Facturado" />
+                <ScalarProperty Name="Fl_Facturado" ColumnName="Fl_Facturado" />
+                <ScalarProperty Name="Ss_Gasto" ColumnName="Ss_Gasto" />
+                <ScalarProperty Name="Fl_Gasto" ColumnName="Fl_Gasto" />
+                <ScalarProperty Name="Fe_Caso" ColumnName="Fe_Caso" />
+                <ScalarProperty Name="Co_Solicitud" ColumnName="Co_Solicitud" />
+                <ScalarProperty Name="Co_Caso" ColumnName="Co_Caso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="Nu_Longitud" ColumnName="Nu_Longitud" />
+                <ScalarProperty Name="Nu_Latitud" ColumnName="Nu_Latitud" />
+                <ScalarProperty Name="Tx_CargoContacto" ColumnName="Tx_CargoContacto" />
+                <ScalarProperty Name="No_NombreContacto" ColumnName="No_NombreContacto" />
+                <ScalarProperty Name="Nu_Telefono" ColumnName="Nu_Telefono" />
+                <ScalarProperty Name="Co_Distrito" ColumnName="Co_Distrito" />
+                <ScalarProperty Name="Tx_Direccion" ColumnName="Tx_Direccion" />
+                <ScalarProperty Name="Nu_Ruc" ColumnName="Nu_Ruc" />
+                <ScalarProperty Name="Tx_RazonSocial" ColumnName="Tx_RazonSocial" />
+                <ScalarProperty Name="Co_Cliente" ColumnName="Co_Cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTRATO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.CONTRATO">
+              <MappingFragment StoreEntitySet="CONTRATO">
+                <ScalarProperty Name="Tx_Estado" ColumnName="Tx_Estado" />
+                <ScalarProperty Name="Fe_Final" ColumnName="Fe_Final" />
+                <ScalarProperty Name="Fe_Inicio" ColumnName="Fe_Inicio" />
+                <ScalarProperty Name="Tx_Tipo" ColumnName="Tx_Tipo" />
+                <ScalarProperty Name="No_Contrato" ColumnName="No_Contrato" />
+                <ScalarProperty Name="Co_Contrato" ColumnName="Co_Contrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="DEPARTAMENTO">
+                <ScalarProperty Name="No_Departamento" ColumnName="No_Departamento" />
+                <ScalarProperty Name="Co_Departamento" ColumnName="Co_Departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_CASO_SERVICIO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO">
+              <MappingFragment StoreEntitySet="DETALLE_CASO_SERVICIO">
+                <ScalarProperty Name="No_UsuarioMod" ColumnName="No_UsuarioMod" />
+                <ScalarProperty Name="Fe_RegistroMod" ColumnName="Fe_RegistroMod" />
+                <ScalarProperty Name="No_UsuarioIni" ColumnName="No_UsuarioIni" />
+                <ScalarProperty Name="Fe_RegistroIni" ColumnName="Fe_RegistroIni" />
+                <ScalarProperty Name="Fl_Reporte" ColumnName="Fl_Reporte" />
+                <ScalarProperty Name="Nu_Error" ColumnName="Nu_Error" />
+                <ScalarProperty Name="Tx_DetalleServicio" ColumnName="Tx_DetalleServicio" />
+                <ScalarProperty Name="Co_Tecnico" ColumnName="Co_Tecnico" />
+                <ScalarProperty Name="Fe_HoraFinal" ColumnName="Fe_HoraFinal" />
+                <ScalarProperty Name="Fe_HoraInicial" ColumnName="Fe_HoraInicial" />
+                <ScalarProperty Name="Co_Tipo" ColumnName="Co_Tipo" />
+                <ScalarProperty Name="Co_Equipo" ColumnName="Co_Equipo" />
+                <ScalarProperty Name="Co_Caso" ColumnName="Co_Caso" />
+                <ScalarProperty Name="Co_Detalle_Caso" ColumnName="Co_Detalle_Caso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_SOLICITUD_ATENCION">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.DETALLE_SOLICITUD_ATENCION">
+              <MappingFragment StoreEntitySet="DETALLE_SOLICITUD_ATENCION">
+                <ScalarProperty Name="Tx_Observaciones" ColumnName="Tx_Observaciones" />
+                <ScalarProperty Name="Nu_Error" ColumnName="Nu_Error" />
+                <ScalarProperty Name="Tx_Problema" ColumnName="Tx_Problema" />
+                <ScalarProperty Name="Co_Equipo" ColumnName="Co_Equipo" />
+                <ScalarProperty Name="Co_Solicitud" ColumnName="Co_Solicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISTRITO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.DISTRITO">
+              <MappingFragment StoreEntitySet="DISTRITO">
+                <ScalarProperty Name="Co_Provincia" ColumnName="Co_Provincia" />
+                <ScalarProperty Name="No_Distrito" ColumnName="No_Distrito" />
+                <ScalarProperty Name="Co_Distrito" ColumnName="Co_Distrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.EQUIPO">
+              <MappingFragment StoreEntitySet="EQUIPO">
+                <ScalarProperty Name="Tx_Longitud" ColumnName="Tx_Longitud" />
+                <ScalarProperty Name="Tx_Latitud" ColumnName="Tx_Latitud" />
+                <ScalarProperty Name="Tx_Descripcion" ColumnName="Tx_Descripcion" />
+                <ScalarProperty Name="Tx_Estado" ColumnName="Tx_Estado" />
+                <ScalarProperty Name="Co_Cliente" ColumnName="Co_Cliente" />
+                <ScalarProperty Name="Tx_Ubicacion" ColumnName="Tx_Ubicacion" />
+                <ScalarProperty Name="Tx_Serie" ColumnName="Tx_Serie" />
+                <ScalarProperty Name="Tx_Marca" ColumnName="Tx_Marca" />
+                <ScalarProperty Name="Tx_Modelo" ColumnName="Tx_Modelo" />
+                <ScalarProperty Name="Co_Equipo" ColumnName="Co_Equipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GPS_TECNICO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.GPS_TECNICO">
+              <MappingFragment StoreEntitySet="GPS_TECNICO">
+                <ScalarProperty Name="Tx_Longitud" ColumnName="Tx_Longitud" />
+                <ScalarProperty Name="Tx_Latitud" ColumnName="Tx_Latitud" />
+                <ScalarProperty Name="Fe_Gps" ColumnName="Fe_Gps" />
+                <ScalarProperty Name="Co_Tecnico" ColumnName="Co_Tecnico" />
+                <ScalarProperty Name="Co_Gps" ColumnName="Co_Gps" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_ERROR">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.LOG_ERROR">
+              <MappingFragment StoreEntitySet="LOG_ERROR">
+                <ScalarProperty Name="Tx_Archivo" ColumnName="Tx_Archivo" />
+                <ScalarProperty Name="Tx_Sistema" ColumnName="Tx_Sistema" />
+                <ScalarProperty Name="Tx_Energia" ColumnName="Tx_Energia" />
+                <ScalarProperty Name="Tx_COM" ColumnName="Tx_COM" />
+                <ScalarProperty Name="Tx_VGA" ColumnName="Tx_VGA" />
+                <ScalarProperty Name="Tx_Visualizacion" ColumnName="Tx_Visualizacion" />
+                <ScalarProperty Name="Tx_Alineacion" ColumnName="Tx_Alineacion" />
+                <ScalarProperty Name="Tx_Voltaje" ColumnName="Tx_Voltaje" />
+                <ScalarProperty Name="Tx_Detalle" ColumnName="Tx_Detalle" />
+                <ScalarProperty Name="Fe_LogError" ColumnName="Fe_LogError" />
+                <ScalarProperty Name="Co_Equipo" ColumnName="Co_Equipo" />
+                <ScalarProperty Name="Co_Error" ColumnName="Co_Error" />
+                <ScalarProperty Name="Co_LogError" ColumnName="Co_LogError" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCIA">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.PROVINCIA">
+              <MappingFragment StoreEntitySet="PROVINCIA">
+                <ScalarProperty Name="Co_Departamento" ColumnName="Co_Departamento" />
+                <ScalarProperty Name="No_Provincia" ColumnName="No_Provincia" />
+                <ScalarProperty Name="Co_Provincia" ColumnName="Co_Provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITUD_ATENCION">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.SOLICITUD_ATENCION">
+              <MappingFragment StoreEntitySet="SOLICITUD_ATENCION">
+                <ScalarProperty Name="Tx_Observaciones" ColumnName="Tx_Observaciones" />
+                <ScalarProperty Name="Tx_Estado" ColumnName="Tx_Estado" />
+                <ScalarProperty Name="Fe_Solicitud" ColumnName="Fe_Solicitud" />
+                <ScalarProperty Name="Co_Solicitud" ColumnName="Co_Solicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITUD_COTIZACION">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.SOLICITUD_COTIZACION">
+              <MappingFragment StoreEntitySet="SOLICITUD_COTIZACION">
+                <ScalarProperty Name="No_UsuarioMod" ColumnName="No_UsuarioMod" />
+                <ScalarProperty Name="Fe_RegistroMod" ColumnName="Fe_RegistroMod" />
+                <ScalarProperty Name="No_UsuarioIni" ColumnName="No_UsuarioIni" />
+                <ScalarProperty Name="Co_SolicitudAtencion" ColumnName="Co_SolicitudAtencion" />
+                <ScalarProperty Name="Tx_Detalle" ColumnName="Tx_Detalle" />
+                <ScalarProperty Name="Fe_Solicitud" ColumnName="Fe_Solicitud" />
+                <ScalarProperty Name="Co_Solicitud" ColumnName="Co_Solicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TECNICO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.TECNICO">
+              <MappingFragment StoreEntitySet="TECNICO">
+                <ScalarProperty Name="Co_Distrito" ColumnName="Co_Distrito" />
+                <ScalarProperty Name="Tx_Direccion" ColumnName="Tx_Direccion" />
+                <ScalarProperty Name="Tx_Celular" ColumnName="Tx_Celular" />
+                <ScalarProperty Name="Tx_Telefono" ColumnName="Tx_Telefono" />
+                <ScalarProperty Name="Nu_Dni" ColumnName="Nu_Dni" />
+                <ScalarProperty Name="Tx_NomCompleto" ColumnName="Tx_NomCompleto" />
+                <ScalarProperty Name="Ape_Materno" ColumnName="Ape_Materno" />
+                <ScalarProperty Name="Ape_Paterno" ColumnName="Ape_Paterno" />
+                <ScalarProperty Name="No_Tecnico" ColumnName="No_Tecnico" />
+                <ScalarProperty Name="Co_Tecnico" ColumnName="Co_Tecnico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_SERVICIO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.TIPO_SERVICIO">
+              <MappingFragment StoreEntitySet="TIPO_SERVICIO">
+                <ScalarProperty Name="Tx_Descripcion" ColumnName="Tx_Descripcion" />
+                <ScalarProperty Name="No_Nombre" ColumnName="No_Nombre" />
+                <ScalarProperty Name="Co_Tipo" ColumnName="Co_Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="DBUNLIMITEDModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="Tx_Password" ColumnName="Tx_Password" />
+                <ScalarProperty Name="No_Usuario" ColumnName="No_Usuario" />
+                <ScalarProperty Name="Co_Usuario" ColumnName="Co_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CONTRATO_EQUIPO" TypeName="DBUNLIMITEDModel.CONTRATO_EQUIPO" StoreEntitySet="CONTRATO_EQUIPO">
+            <EndProperty Name="EQUIPO">
+              <ScalarProperty Name="Co_Equipo" ColumnName="Co_Equipo" />
+            </EndProperty>
+            <EndProperty Name="CONTRATO">
+              <ScalarProperty Name="Co_Contrato" ColumnName="Co_Contrato" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

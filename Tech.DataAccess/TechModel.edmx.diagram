@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb1ad1b1e3c547aaa103ddfe353cf3f8" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.CASO_SERVICIO" Width="1.5" PointX="13.5" PointY="10.5" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.CLIENTE" Width="1.5" PointX="4.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.CONTRATO" Width="1.5" PointX="5.875" PointY="7" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.DETALLE_CASO_SERVICIO" Width="1.5" PointX="13.375" PointY="16.875" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.DETALLE_SOLICITUD_ATENCION" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.DISTRITO" Width="1.5" PointX="0.75" PointY="14" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.EQUIPO" Width="1.5" PointX="7.625" PointY="10.5" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.GPS_TECNICO" Width="1.5" PointX="6.875" PointY="19.125" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.LOG_ERROR" Width="1.5" PointX="10.75" PointY="6" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.PROVINCIA" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.SOLICITUD_ATENCION" Width="1.5" PointX="10.375" PointY="14.625" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.SOLICITUD_COTIZACION" Width="1.5" PointX="6" PointY="15.5" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.TECNICO" Width="1.5" PointX="9.875" PointY="18.25" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.TIPO_SERVICIO" Width="1.5" PointX="16.125" PointY="18.125" />
+        <EntityTypeShape EntityType="DBUNLIMITEDModel.USUARIO" Width="1.5" PointX="0.875" PointY="6.375" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_CASO_SERVICIO_SOLICITUD_ATENCION" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_CASO_SERVICIO" ManuallyRouted="true" >
+          <ConnectorPoint PointX="14.520535286957516" PointY="14.595602213541666" />
+          <ConnectorPoint PointX="14.520535286957516" PointY="16.246548730468749" />
+          <ConnectorPoint PointX="14.519349735658045" PointY="16.246548730468749" />
+          <ConnectorPoint PointX="14.519349735658045" PointY="16.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_CLIENTE_DISTRITO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_EQUIPO_CLIENTE" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_PROVINCIA_DEPARTAMENTO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_EQUIPO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TECNICO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DETALLE_CASO_SERVICIO_TIPO_SERVICIO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_EQUIPO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DETALLE_SOLICITUD_ATENCION_SOLICITUD_ATENCION" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_DISTRITO_PROVINCIA" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_TECNICO_DISTRITO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_LOG_ERROR_EQUIPO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_GPS_TECNICO_TECNICO" />
+        <AssociationConnector Association="DBUNLIMITEDModel.FK_SOLICITUD_COTIZACION_SOLICITUD_ATENCION" />
+        <AssociationConnector Association="DBUNLIMITEDModel.CONTRATO_EQUIPO" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
