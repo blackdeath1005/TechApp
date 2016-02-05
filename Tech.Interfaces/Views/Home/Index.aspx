@@ -7,7 +7,7 @@
 <asp:Content ID="indexFeatured" ContentPlaceHolderID="FeaturedContent" runat="server">
     <% if (Request.IsAuthenticated) { %> 
     <div class="content">
-        <h2>Bienvenido a TECH - Web Service Support 2</h2>
+        <h2>Bienvenido a TECH - Web Service Support</h2>
     </div>
 
     <div class="content">
